@@ -1,0 +1,13 @@
+{
+    "name": "Withdraw",
+    "alias": "withdraw",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
