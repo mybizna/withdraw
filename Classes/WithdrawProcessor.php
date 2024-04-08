@@ -26,25 +26,25 @@ class WithdrawProcessor
         $resultList = [];
 
         $queryResult = DB::select("
-            SELECT pt.user_id, au.username, (SUM(pt.money_in) - SUM(pt.money_out)) AS Results
+            SELECT pt.partner_id, au.username, (SUM(pt.money_in) - SUM(pt.money_out)) AS Results
             FROM public.payment_transaction as pt
-            LEFT JOIN public.auth_user as au ON pt.user_id = au.id
-            LEFT JOIN public.affiliate_affiliate as aa ON aa.user_id = au.id
+            LEFT JOIN public.auth_user as au ON pt.partner_id = au.id
+            LEFT JOIN public.affiliate_affiliate as aa ON aa.partner_id = au.id
             WHERE aa.status = true
-            GROUP BY au.username, pt.user_id
+            GROUP BY au.username, pt.partner_id
             HAVING (SUM(pt.money_in) - SUM(pt.money_out)) > 10
             ORDER BY Results DESC
         ");
 
         foreach ($queryResult as $row) {
-            $user_id = $row->user_id;
+            $partner_id = $row->partner_id;
             $amount = (int) $row->Results - 1;
 
-            $setting = Setting::where('user_id', $user_id)->first();
+            $setting = Setting::where('partner_id', $partner_id)->first();
 
             if ($setting && !$setting->user->is_staff) {
                 $withdraw = new Withdraw();
-                $withdraw->user_id = $setting->user->id;
+                $withdraw->partner_id = $setting->user->id;
                 $withdraw->gateway_id = $setting->gateway->id;
                 $withdraw->amount = $amount;
                 $withdraw->description = 'Withdrawal of ' . $amount;
@@ -110,7 +110,7 @@ class WithdrawProcessor
                 ]);
             }
 
-            $summary_info->clearAmountCache($withdraw->user_id);
+            $summary_info->clearAmountCache($withdraw->partner_id);
         }
     }
 
@@ -163,7 +163,7 @@ class WithdrawProcessor
             $this->sendEmail($withdraw);
             $this->sendNotification();
 
-            $summary_info->clearAmountCache($withdraw->user_id);
+            $summary_info->clearAmountCache($withdraw->partner_id);
         }
     }
 

@@ -13,7 +13,7 @@ class Whitelist extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'start_date', 'end_date', 'reason', 'user_id'];
+    protected $fillable = ['id', 'start_date', 'end_date', 'reason', 'partner_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -21,8 +21,8 @@ class Whitelist extends BaseModel
      * @var array<string>
      */
     public $rec_names = [
-        'fields' => ['user_id__name', 'start_date', 'end_date'],
-        'template' => "[user_id__name] ([start_date]-[end_date])",
+        'fields' => ['partner_id__name', 'start_date', 'end_date'],
+        'template' => "[partner_id__name] ([start_date]-[end_date])",
     ];
 
     /**
@@ -62,11 +62,11 @@ class Whitelist extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['start_date', 'end_date', 'reason', 'user_id'];
+        $structure['table'] = ['start_date', 'end_date', 'reason', 'partner_id'];
         $structure['form'] = [
-            ['label' => 'Withdraw Whitelist', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['start_date', 'end_date', 'reason', 'user_id', 'partner_id']],
+            ['label' => 'Withdraw Whitelist', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['start_date', 'end_date', 'reason', 'partner_id', 'partner_id']],
         ];
-        $structure['filter'] = ['start_date', 'end_date', 'reason', 'user_id'];
+        $structure['filter'] = ['start_date', 'end_date', 'reason', 'partner_id'];
         return $structure;
     }
 

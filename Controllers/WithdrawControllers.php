@@ -72,11 +72,11 @@ class WithdrawController extends Controller
         $bankAccountName = $request->input('bank_account_name');
         $bankName = $request->input('bank_name');
         $bankBranch = $request->input('bank_branch');
-        $userId = $request->input('user_id');
+        $userId = $request->input('partner_id');
         $nextTo = $request->input('next_to', 'manage_withdraw_setting_list');
 
         $gatewayObj = Gateway::where('short_name', $gateway)->first();
-        $affiliate = Affiliate::where('user_id', $userId)->first();
+        $affiliate = Affiliate::where('partner_id', $userId)->first();
 
         $data = [];
 
@@ -89,10 +89,10 @@ class WithdrawController extends Controller
             ];
         }
 
-        Setting::where('user_id', $userId)->delete();
+        Setting::where('partner_id', $userId)->delete();
 
         $setting = new Setting();
-        $setting->user_id = $affiliate->user_id;
+        $setting->partner_id = $affiliate->partner_id;
         $setting->id_passport = $idPassport;
         $setting->account = $account;
         $setting->govt_pin = $govtPin;

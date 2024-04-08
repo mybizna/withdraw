@@ -13,7 +13,7 @@ class Setting extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'id_passport', 'govt_pin', 'user_id', 'gateway_id', 'params', 'account'];
+    protected $fillable = ['id', 'id_passport', 'govt_pin', 'partner_id', 'gateway_id', 'params', 'account'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -21,8 +21,8 @@ class Setting extends BaseModel
      * @var array<string>
      */
     public $rec_names = [
-        'fields' => ['user_id__name', 'gateway_id__title', 'id_passport'],
-        'template' => "[user_id__name] - [gateway_id__title] ([id_passport])",
+        'fields' => ['partner_id__name', 'gateway_id__title', 'id_passport'],
+        'template' => "[partner_id__name] - [gateway_id__title] ([id_passport])",
     ];
 
     /**
@@ -64,12 +64,12 @@ class Setting extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['id_passport', 'govt_pin', 'user_id', 'gateway_id', 'params', 'account'];
+        $structure['table'] = ['id_passport', 'govt_pin', 'partner_id', 'gateway_id', 'params', 'account'];
         $structure['form'] = [
-            ['label' => 'Withdraw Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['id_passport', 'govt_pin', 'user_id', 'gateway_id', 'account']],
+            ['label' => 'Withdraw Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['id_passport', 'govt_pin', 'partner_id', 'gateway_id', 'account']],
             ['label' => 'Withdraw Setting Params', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['params']],
         ];
-        $structure['filter'] = ['id_passport', 'govt_pin', 'user_id', 'gateway_id', 'params', 'account'];
+        $structure['filter'] = ['id_passport', 'govt_pin', 'partner_id', 'gateway_id', 'params', 'account'];
         return $structure;
     }
 }

@@ -13,7 +13,7 @@ class Withdraw extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'amount', 'currency', 'description', 'paid_status', 'is_canceled', 'token', 'params', 'gateway_id', 'user_id'];
+    protected $fillable = ['id', 'amount', 'currency', 'description', 'paid_status', 'is_canceled', 'token', 'params', 'gateway_id', 'partner_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -22,8 +22,8 @@ class Withdraw extends BaseModel
      */
     public $rec_names = [
 
-        'fields' => ['user_id__name', 'gateway_id__title', 'amount'],
-        'template' => "[user_id__name] - [gateway_id__title] ([amount])",
+        'fields' => ['partner_id__name', 'gateway_id__title', 'amount'],
+        'template' => "[partner_id__name] - [gateway_id__title] ([amount])",
     ];
 
     /**
@@ -68,13 +68,13 @@ class Withdraw extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['user_id', 'gateway_id', 'amount', 'paid_status', 'is_canceled'];
+        $structure['table'] = ['partner_id', 'gateway_id', 'amount', 'paid_status', 'is_canceled'];
         $structure['form'] = [
-            ['label' => 'Withdraw Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['user_id', 'gateway_id', 'amount', 'currency_id', 'partner_id']],
+            ['label' => 'Withdraw Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['partner_id', 'gateway_id', 'amount', 'currency_id', 'partner_id']],
             ['label' => 'Withdraw Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['token', 'partner_id', 'paid_status', 'is_canceled']],
             ['label' => 'Withraw Description', 'class' => 'col-span-full', 'fields' => ['description', 'params']],
         ];
-        $structure['filter'] = ['user_id', 'gateway_id', 'amount', 'paid_status', 'is_canceled'];
+        $structure['filter'] = ['partner_id', 'gateway_id', 'amount', 'paid_status', 'is_canceled'];
         return $structure;
     }
 
