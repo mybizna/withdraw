@@ -75,7 +75,7 @@ class Disallowedin extends BaseModel
         $rights = parent::rights();
 
         $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
+        $rights['registered'] = [];
         $rights['guest'] = [];
 
         return $rights;
