@@ -69,4 +69,15 @@ class Blacklist extends BaseModel
         $structure['filter'] = ['start_date', 'end_date', 'reason', 'partner_id'];
         return $structure;
     }
+
+    
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }

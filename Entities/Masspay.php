@@ -74,4 +74,15 @@ class Masspay extends BaseModel
         $structure['filter'] = ['year', 'month', 'date', 'token', 'is_processed', 'type'];
         return $structure;
     }
+
+
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }

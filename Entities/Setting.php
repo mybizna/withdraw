@@ -72,4 +72,14 @@ class Setting extends BaseModel
         $structure['filter'] = ['id_passport', 'govt_pin', 'partner_id', 'gateway_id', 'params', 'account'];
         return $structure;
     }
+
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }

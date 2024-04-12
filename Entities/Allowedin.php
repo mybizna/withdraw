@@ -63,4 +63,14 @@ class Allowedin extends BaseModel
         $structure['filter'] = ['country_id'];
         return $structure;
     }
+
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }
