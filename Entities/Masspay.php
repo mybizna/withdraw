@@ -16,23 +16,6 @@ class Masspay extends BaseModel
     protected $fillable = ['id', 'year', 'month', 'date', 'token', 'is_processed', 'type', 'max_limit', 'file'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = [
-        'fields' => ['year', 'month', 'token'],
-        'template' => "[year] [month] ([token])",
-    ];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -61,34 +44,8 @@ class Masspay extends BaseModel
 
     }
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['year', 'month', 'date', 'token', 'is_processed', 'type', 'max_limit'];
-        $structure['form'] = [
-            ['label' => 'Withdraw Masspay Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['year', 'month', 'date', 'token']],
-            ['label' => 'Withdraw Masspay Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['is_processed', 'type', 'max_limit', 'file']],
-        ];
-        $structure['filter'] = ['year', 'month', 'date', 'token', 'is_processed', 'type'];
-        return $structure;
-    }
 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
 
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
+  
 }

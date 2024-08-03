@@ -16,24 +16,6 @@ class Withdraw extends BaseModel
     protected $fillable = ['id', 'amount', 'currency', 'description', 'paid_status', 'is_canceled', 'token', 'params', 'gateway_id', 'partner_id'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = [
-
-        'fields' => ['partner_id__name', 'gateway_id__title', 'amount'],
-        'template' => "[partner_id__name] - [gateway_id__title] ([amount])",
-    ];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -61,37 +43,6 @@ class Withdraw extends BaseModel
         $this->fields->bigInteger('gateway_id')->nullable()->html('recordpicker')->relation(['account', 'gateway']);
         $this->fields->integer('partner_id')->nullable()->html('recordpicker')->relation(['partner']);
 
-    }
-
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['partner_id', 'gateway_id', 'amount', 'paid_status', 'is_canceled'];
-        $structure['form'] = [
-            ['label' => 'Withdraw Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['partner_id', 'gateway_id', 'amount', 'currency_id', 'partner_id']],
-            ['label' => 'Withdraw Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['token', 'partner_id', 'paid_status', 'is_canceled']],
-            ['label' => 'Withraw Description', 'class' => 'col-span-full', 'fields' => ['description', 'params']],
-        ];
-        $structure['filter'] = ['partner_id', 'gateway_id', 'amount', 'paid_status', 'is_canceled'];
-        return $structure;
-    }
-
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
-        $rights['guest'] = [];
-
-        return $rights;
     }
 
 }

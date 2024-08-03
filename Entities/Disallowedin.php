@@ -16,20 +16,6 @@ class Disallowedin extends BaseModel
     protected $fillable = ['id', 'country_id'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['country_id__name'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -52,33 +38,7 @@ class Disallowedin extends BaseModel
     }
 
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['country_id'];
-        $structure['form'] = [
-            ['label' => 'Withdraw Disallowed In', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['country_id']],
-        ];
-        $structure['filter'] = ['country_id'];
-        return $structure;
-    }
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
+ 
 
 }
