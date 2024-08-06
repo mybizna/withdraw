@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('withdraw_masspay', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('year');
+            $table->string('month');
+            $table->string('date');
+            $table->string('token')->nullable();
+            $table->boolean('is_processed')->nullable()->default(false);
+            $table->string('type');
+            $table->integer('max_limit');
+            $table->string('file');
+
             $table->timestamps();
         });
     }

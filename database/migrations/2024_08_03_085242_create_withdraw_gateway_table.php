@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('withdraw_gateway', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('label');
+            $table->longText('instruction');
+            $table->bigInteger('gateway_id')->nullable();
+            $table->longText('file_structure');
+            $table->longText('file_prefix')->nullable();
+            $table->longText('file_suffix')->nullable();
+            $table->string('file_type')->nullable();
+            $table->integer('file_limit')->nullable();
+
             $table->timestamps();
         });
     }

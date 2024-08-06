@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('withdraw_setting', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('id_passport')->nullable();
+            $table->string('govt_pin')->nullable();
+            $table->integer('partner_id')->nullable();
+            $table->bigInteger('gateway_id')->nullable();
+            $table->longText('params')->nullable();
+            $table->string('account')->nullable();
+
             $table->timestamps();
         });
     }

@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('withdraw_blacklist', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->longText('reason')->nullable();
+            $table->integer('partner_id')->nullable();
+
             $table->timestamps();
         });
     }
