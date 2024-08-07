@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
             $table->longText('reason')->nullable();
-            $table->integer('partner_id')->nullable();
+            $table->foreignId('partner_id')->nullable();
 
             $table->timestamps();
         });

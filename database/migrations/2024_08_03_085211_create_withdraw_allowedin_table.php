@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('withdraw_allowedin', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('country_id')->nullable();
+            $table->foreignId('country_id')->nullable();
 
             $table->timestamps();
         });

@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
 
             $table->decimal('amount', 11);
-            $table->string('currency_id')->nullable();
+            $table->foreignId('currency_id')->nullable();
             $table->longText('description')->nullable();
             $table->boolean('paid_status')->nullable()->default(false);
             $table->boolean('is_canceled')->nullable()->default(false);
             $table->string('token')->nullable();
             $table->longText('params')->nullable();
-            $table->bigInteger('gateway_id')->nullable();
-            $table->integer('partner_id')->nullable();
+            $table->foreignId('gateway_id')->nullable();
+            $table->foreignId('partner_id')->nullable();
 
             $table->timestamps();
         });

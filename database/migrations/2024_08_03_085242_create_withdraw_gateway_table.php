@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('label');
             $table->longText('instruction');
-            $table->bigInteger('gateway_id')->nullable();
+            $table->foreignId('gateway_id')->nullable();
             $table->longText('file_structure');
             $table->longText('file_prefix')->nullable();
             $table->longText('file_suffix')->nullable();
