@@ -1,17 +1,16 @@
 <?php
 
-use Modules\Core\Classes\Common;
-use Modules\Mail\Classes\Mailer;
-use Modules\Payment\Classes\PaymentProcessor;
-use Modules\Affiliate\Classes\SummaryInfo;
-use Modules\Withdraw\EntitiesGateway;
-use Modules\Withdraw\Entities\Rate;
-use Modules\Withdraw\Entities\Setting;
-use Modules\Payment\Entities\Transaction;
-use Modules\Withdraw\Entities\Withdraw;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Modules\Affiliate\Classes\SummaryInfo;
+use Modules\Core\Classes\Common;
+use Modules\Mail\Classes\Mailer;
+use Modules\Payment\Classes\PaymentProcessor;
+use Modules\Payment\Models\Transaction;
+use Modules\Withdraw\Models\Rate;
+use Modules\Withdraw\Models\Setting;
+use Modules\Withdraw\Models\Withdraw;
 
 class WithdrawProcessor
 {

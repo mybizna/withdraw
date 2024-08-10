@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect; // Replace with your WithdrawProcessor class
 use Illuminate\Support\Facades\Session; // Replace with your Withdraw model
 use Illuminate\Support\Facades\View; // Replace with your Gateway model
-use Modules\Affiliate\Entities\Affiliate; // Replace with your Affiliate model
+use Modules\Affiliate\Models\Affiliate; // Replace with your Affiliate model
 use Modules\Withdraw\Classes\WithdrawProcessor; // Replace with your Setting model
-use Modules\Withdraw\Entities\Gateway;
-use Modules\Withdraw\Entities\Setting;
-use Modules\Withdraw\Entities\Withdraw;
+use Modules\Withdraw\Models\Gateway;
+use Modules\Withdraw\Models\Setting;
+use Modules\Withdraw\Models\Withdraw;
 
 class WithdrawController extends Controller
 {

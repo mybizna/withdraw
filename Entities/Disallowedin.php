@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Withdraw\Entities;
+namespace Modules\Withdraw\Models;
 
-use Modules\Base\Entities\BaseModel;
+use Modules\Base\Models\BaseModel;
 
 class Disallowedin extends BaseModel
 {

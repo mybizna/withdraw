@@ -2,12 +2,12 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
-use Modules\Core\Entities\Currency;
+use Modules\Core\Models\Currency;
 use Modules\Mail\Classes\Mailer;
-use Modules\Withdraw\Entities\Gateway;
-use Modules\Withdraw\Entities\Masspay;
-use Modules\Withdraw\Entities\Setting;
-use Modules\Withdraw\Entities\Withdraw;
+use Modules\Withdraw\Models\Gateway;
+use Modules\Withdraw\Models\Masspay;
+use Modules\Withdraw\Models\Setting;
+use Modules\Withdraw\Models\Withdraw;
 
 class MasspayProcessor
 {
