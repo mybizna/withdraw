@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('withdraw_allowedin', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('country_id');
+            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('withdraw_allowedin_country_id');
 
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('label');
             $table->longText('instruction');
-            $table->foreignId('gateway_id')->constrained('account_gateway')->onDelete('cascade')->nullable()->index('gateway_id');
+            $table->foreignId('gateway_id')->constrained('account_gateway')->onDelete('cascade')->nullable()->index('withdraw_gateway_gateway_id');
             $table->longText('file_structure');
             $table->longText('file_prefix')->nullable();
             $table->longText('file_suffix')->nullable();
