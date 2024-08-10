@@ -16,8 +16,8 @@ return new class extends Migration
 
             $table->string('id_passport')->nullable();
             $table->string('govt_pin')->nullable();
-            $table->integer('partner_id')->nullable();
-            $table->bigInteger('gateway_id')->nullable();
+            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('partner_id');
+            $table->foreignId('gateway_id')->constrained('account_gateway')->onDelete('cascade')->nullable()->index('gateway_id');
             $table->longText('params')->nullable();
             $table->string('account')->nullable();
 
