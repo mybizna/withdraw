@@ -26,7 +26,14 @@
   },
   "autoload": {
     "psr-4": {
-      "Modules\\Withdraw\\": ""
+      "Modules\\Airtime\\": "app/",
+      "Modules\\Airtime\\Database\\Factories\\": "database/factories/",
+      "Modules\\Airtime\\Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Modules\\Airtime\\Tests\\": "tests/"
     }
   }
 }
