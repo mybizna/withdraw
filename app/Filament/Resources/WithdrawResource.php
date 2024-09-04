@@ -2,9 +2,6 @@
 
 namespace Modules\Withdraw\Filament\Resources;
 
-use Modules\Withdraw\Filament\Resources\WithdrawResource\Pages;
-use Modules\Withdraw\Filament\Resources\WithdrawResource\RelationManagers;
-use Modules\Withdraw\Models\Withdraw;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Withdraw\Filament\Resources\WithdrawResource\Pages;
+use Modules\Withdraw\Models\Withdraw;
 
 class WithdrawResource extends Resource
 {
     protected static ?string $model = Withdraw::class;
+
+    protected static ?string $slug = 'withdraw/withdraw';
+
+    protected static ?string $navigationGroup = 'Withdraw';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

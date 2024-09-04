@@ -2,9 +2,6 @@
 
 namespace Modules\Withdraw\Filament\Resources;
 
-use Modules\Withdraw\Filament\Resources\AllowedinResource\Pages;
-use Modules\Withdraw\Filament\Resources\AllowedinResource\RelationManagers;
-use Modules\Withdraw\Models\Allowedin;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Withdraw\Filament\Resources\AllowedinResource\Pages;
+use Modules\Withdraw\Models\Allowedin;
 
 class AllowedinResource extends Resource
 {
     protected static ?string $model = Allowedin::class;
+
+    protected static ?string $slug = 'withdraw/allowedin';
+
+    protected static ?string $navigationGroup = 'Withdraw';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

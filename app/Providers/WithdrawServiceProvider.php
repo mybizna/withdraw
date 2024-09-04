@@ -9,7 +9,7 @@ class WithdrawServiceProvider extends ServiceProvider
 {
     protected string $moduleName = 'Withdraw';
 
-    protected string $moduleNameLower = 'Withdraw';
+    protected string $moduleNameLower = 'withdraw';
 
     /**
      * Boot the application events.
