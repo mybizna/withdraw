@@ -3,6 +3,7 @@
 namespace Modules\Withdraw\Models;
 
 use Modules\Base\Models\BaseModel;
+use Modules\Partner\Models\Partner;
 
 class Blacklist extends BaseModel
 {
@@ -20,5 +21,14 @@ class Blacklist extends BaseModel
      * @var string
      */
     protected $table = "withdraw_blacklist";
+
+    /**
+     * Add relationship to Partner
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
+    }
 
 }

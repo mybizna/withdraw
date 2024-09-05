@@ -2,7 +2,9 @@
 
 namespace Modules\Withdraw\Models;
 
+use Modules\Account\Models\Gateway as AccGateway;
 use Modules\Base\Models\BaseModel;
+use Modules\Withdraw\Models\Setting;
 
 class Gateway extends BaseModel
 {
@@ -20,5 +22,23 @@ class Gateway extends BaseModel
      * @var string
      */
     protected $table = "withdraw_gateway";
+
+    /**
+     * Adding relationship to Setting
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function settings()
+    {
+        return $this->hasMany(Setting::class);
+    }
+
+    /**
+     * Adding relationship to Gateway
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gateway()
+    {
+        return $this->belongsTo(AccGateway::class);
+    }
 
 }

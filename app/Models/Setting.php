@@ -2,7 +2,9 @@
 
 namespace Modules\Withdraw\Models;
 
+use Modules\Account\Models\Gateway;
 use Modules\Base\Models\BaseModel;
+use Modules\Partner\Models\Partner;
 
 class Setting extends BaseModel
 {
@@ -20,5 +22,24 @@ class Setting extends BaseModel
      * @var string
      */
     protected $table = "withdraw_setting";
+
+    /**
+     * Add relationship to Gateway
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gateway()
+    {
+        return $this->belongsTo(Gateway::class);
+    }
+
+    /**
+     * Add relationship to Partner
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
+    }
 
 }
