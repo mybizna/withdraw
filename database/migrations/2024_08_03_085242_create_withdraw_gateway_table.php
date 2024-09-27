@@ -16,14 +16,19 @@ return new class extends Migration
 
             $table->string('label');
             $table->longText('instruction');
-            $table->foreignId('gateway_id')->constrained('account_gateway')->onDelete('cascade')->nullable()->index('withdraw_gateway_gateway_id');
+            $table->foreignId('gateway_id')->nullable()->constrained('account_gateway')->onDelete('set null');
             $table->longText('file_structure');
             $table->longText('file_prefix')->nullable();
             $table->longText('file_suffix')->nullable();
             $table->string('file_type')->nullable();
             $table->integer('file_limit')->nullable();
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

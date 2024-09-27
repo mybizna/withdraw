@@ -16,12 +16,17 @@ return new class extends Migration
 
             $table->string('id_passport')->nullable();
             $table->string('govt_pin')->nullable();
-            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('withdraw_setting_partner_id');
-            $table->foreignId('gateway_id')->constrained('account_gateway')->onDelete('cascade')->nullable()->index('withdraw_setting_gateway_id');
+            $table->foreignId('partner_id')->nullable()->constrained('partner_partner')->onDelete('set null');
+            $table->foreignId('gateway_id')->nullable()->constrained('account_gateway')->onDelete('set null');
             $table->longText('params')->nullable();
             $table->string('account')->nullable();
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

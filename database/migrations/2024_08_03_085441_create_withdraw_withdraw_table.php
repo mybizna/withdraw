@@ -15,16 +15,22 @@ return new class extends Migration
             $table->id();
 
             $table->decimal('amount', 11);
-            $table->foreignId('currency_id')->constrained('core_currency')->onDelete('cascade')->nullable()->index('withdraw_withdraw_currency_id');
+            $table->foreignId('currency_id')->nullable()->constrained('core_currency')->onDelete('set null');
             $table->longText('description')->nullable();
             $table->boolean('paid_status')->nullable()->default(false);
             $table->boolean('is_canceled')->nullable()->default(false);
             $table->string('token')->nullable();
             $table->longText('params')->nullable();
-            $table->foreignId('gateway_id')->constrained('account_gateway')->onDelete('cascade')->nullable()->index('withdraw_withdraw_gateway_id');
-            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('withdraw_withdraw_partner_id');
+            $table->foreignId('gateway_id')->nullable()->constrained('account_gateway')->onDelete('set null');
+            $table->foreignId('partner_id')->nullable()->constrained('partner_partner')->onDelete('set null');
+
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
 
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
