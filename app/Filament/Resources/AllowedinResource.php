@@ -4,15 +4,12 @@ namespace Modules\Withdraw\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Withdraw\Filament\Resources\AllowedinResource\Pages;
+use Modules\Base\Filament\Resources\BaseResource;
 use Modules\Withdraw\Models\Allowedin;
 
-class AllowedinResource extends Resource
+class AllowedinResource extends BaseResource
 {
     protected static ?string $model = Allowedin::class;
 
@@ -63,27 +60,4 @@ class AllowedinResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListAllowedins::route('/'),
-            'create' => Pages\CreateAllowedin::route('/create'),
-            'edit' => Pages\EditAllowedin::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }

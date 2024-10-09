@@ -4,15 +4,12 @@ namespace Modules\Withdraw\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Withdraw\Filament\Resources\SettingResource\Pages;
+use Modules\Base\Filament\Resources\BaseResource;
 use Modules\Withdraw\Models\Setting;
 
-class SettingResource extends Resource
+class SettingResource extends BaseResource
 {
     protected static ?string $model = Setting::class;
 
@@ -86,27 +83,4 @@ class SettingResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListSettings::route('/'),
-            'create' => Pages\CreateSetting::route('/create'),
-            'edit' => Pages\EditSetting::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }

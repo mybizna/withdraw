@@ -4,15 +4,12 @@ namespace Modules\Withdraw\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Withdraw\Filament\Resources\DisallowedinResource\Pages;
+use Modules\Base\Filament\Resources\BaseResource;
 use Modules\Withdraw\Models\Disallowedin;
 
-class DisallowedinResource extends Resource
+class DisallowedinResource extends BaseResource
 {
     protected static ?string $model = Disallowedin::class;
 
@@ -63,27 +60,4 @@ class DisallowedinResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListDisallowedins::route('/'),
-            'create' => Pages\CreateDisallowedin::route('/create'),
-            'edit' => Pages\EditDisallowedin::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }
