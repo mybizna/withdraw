@@ -63,7 +63,7 @@ class AllowedinResource extends BaseResource
 
     public static function getPages(): array
     {
-
+        print("\n = " . static::class);
         Pages\ListBase::setResource(static::class);
 
         return [

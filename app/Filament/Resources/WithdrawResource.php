@@ -97,10 +97,11 @@ class WithdrawResource extends BaseResource
     public static function getPages(): array
     {
 
-        Pages\ListBase::setResource(static::class);
+        print("\n = " . static::class);
+        $list_page = Pages\ListBase::setResource(static::class);
 
         return [
-            'index' => Pages\ListBase::route('/'),
+            'index' => $list_page::route('/'),
             'create' => Pages\CreateBase::route('/create'),
             'edit' => Pages\EditBase::route('/{record}/edit'),
         ];
