@@ -7,7 +7,7 @@ use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\Base\Filament\Resources\BaseResource;
-use Modules\Base\Filament\Resources\Pages;
+use Modules\Withdraw\Filament\Resources\WithdrawResource\Pages;
 use Modules\Withdraw\Models\Withdraw;
 
 class WithdrawResource extends BaseResource
@@ -97,13 +97,10 @@ class WithdrawResource extends BaseResource
     public static function getPages(): array
     {
 
-        print("\n = " . static::class);
-        $list_page = Pages\ListBase::setResource(static::class);
-
         return [
-            'index' => $list_page::route('/'),
-            'create' => Pages\CreateBase::route('/create'),
-            'edit' => Pages\EditBase::route('/{record}/edit'),
+            'index' => Pages\Listing::route('/'),
+            'create' => Pages\Creating::route('/create'),
+            'edit' => Pages\Editing::route('/{record}/edit'),
         ];
     }
 }
