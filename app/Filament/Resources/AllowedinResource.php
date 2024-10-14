@@ -63,8 +63,6 @@ class AllowedinResource extends BaseResource
 
     public static function getPages(): array
     {
-        print("\n = " . static::class);
-
         return [
             'index' => Pages\Listing::route('/'),
             'create' => Pages\Creating::route('/create'),
