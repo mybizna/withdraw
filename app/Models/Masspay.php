@@ -3,6 +3,7 @@
 namespace Modules\Withdraw\Models;
 
 use Modules\Base\Models\BaseModel;
+use Illuminate\Database\Schema\Blueprint;
 
 class Masspay extends BaseModel
 {
@@ -21,4 +22,19 @@ class Masspay extends BaseModel
      */
     protected $table = "withdraw_masspay";
 
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->string('year');
+        $table->string('month');
+        $table->string('date');
+        $table->string('token')->nullable();
+        $table->boolean('is_processed')->nullable()->default(false);
+        $table->string('type');
+        $table->integer('max_limit');
+        $table->string('file');
+
+    }
 }

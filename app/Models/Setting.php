@@ -5,6 +5,8 @@ namespace Modules\Withdraw\Models;
 use Modules\Account\Models\Gateway;
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Setting extends BaseModel
 {
@@ -27,7 +29,7 @@ class Setting extends BaseModel
      * Add relationship to Gateway
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function gateway()
+    public function gateway(): BelongsTo
     {
         return $this->belongsTo(Gateway::class);
     }
@@ -37,9 +39,21 @@ class Setting extends BaseModel
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
 
-    public function partner()
+    public function partner(): BelongsTo
     {
         return $this->belongsTo(Partner::class);
     }
 
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->string('id_passport')->nullable();
+        $table->string('govt_pin')->nullable();
+        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->foreignId('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
+        $table->longText('params')->nullable();
+        $table->string('account')->nullable();
+    }
 }

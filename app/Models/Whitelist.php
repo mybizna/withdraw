@@ -4,6 +4,8 @@ namespace Modules\Withdraw\Models;
 
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Whitelist extends BaseModel
 {
@@ -26,9 +28,20 @@ class Whitelist extends BaseModel
      * Add relationship to Partner
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function partner()
+    public function partner(): BelongsTo
     {
         return $this->belongsTo(Partner::class);
     }
 
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->dateTime('start_date')->nullable();
+        $table->dateTime('end_date')->nullable();
+        $table->longText('reason')->nullable();
+        $table->foreignId('partner_id')->nullable()->constrained('partner_partner')->onDelete('set null');
+
+    }
 }
