@@ -47,7 +47,7 @@ class Setting extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->string('id_passport')->nullable();
         $table->string('govt_pin')->nullable();

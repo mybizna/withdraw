@@ -36,7 +36,7 @@ class Whitelist extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->dateTime('start_date')->nullable();
         $table->dateTime('end_date')->nullable();

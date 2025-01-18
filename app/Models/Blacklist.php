@@ -5,6 +5,7 @@ namespace Modules\Withdraw\Models;
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Blacklist extends BaseModel
 {
@@ -35,7 +36,7 @@ class Blacklist extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->dateTime('start_date')->nullable();
         $table->dateTime('end_date')->nullable();

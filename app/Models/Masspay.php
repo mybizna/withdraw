@@ -25,7 +25,7 @@ class Masspay extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->string('year');
         $table->string('month');

@@ -1,16 +1,24 @@
 <?php
-
 namespace Modules\Withdraw\Models;
 
+use Base\Casts\Money;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Account\Models\Gateway;
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Withdraw extends BaseModel
 {
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -43,12 +51,11 @@ class Withdraw extends BaseModel
         return $this->belongsTo(Partner::class);
     }
 
-
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
-        $table->decimal('amount', 11);
+        $table->integer('amount');
+        $table->string('currency')->default('USD');
         $table->foreignId('currency_id')->nullable()->constrained(table: 'core_currency')->onDelete('set null');
         $table->longText('description')->nullable();
         $table->boolean('paid_status')->nullable()->default(false);
