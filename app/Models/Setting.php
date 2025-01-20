@@ -51,9 +51,15 @@ class Setting extends BaseModel
 
         $table->string('id_passport')->nullable();
         $table->string('govt_pin')->nullable();
-        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
-        $table->foreignId('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
+        $table->unsignedBigInteger('partner_id')->nullable();
+        $table->unsignedBigInteger('gateway_id')->nullable();
         $table->longText('params')->nullable();
         $table->string('account')->nullable();
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->foreign('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
     }
 }

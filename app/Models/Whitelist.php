@@ -41,7 +41,11 @@ class Whitelist extends BaseModel
         $table->dateTime('start_date')->nullable();
         $table->dateTime('end_date')->nullable();
         $table->longText('reason')->nullable();
-        $table->foreignId('partner_id')->nullable()->constrained('partner_partner')->onDelete('set null');
+        $table->unsignedBigInteger('partner_id')->nullable();
+    }
 
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('partner_id')->references('id')->on('partner_partner')->onDelete('set null');
     }
 }

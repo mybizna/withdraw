@@ -56,14 +56,20 @@ class Withdraw extends BaseModel
 
         $table->integer('amount');
         $table->string('currency')->default('USD');
-        $table->foreignId('currency_id')->nullable()->constrained(table: 'core_currency')->onDelete('set null');
+        $table->unsignedBigInteger('currency_id')->nullable();
         $table->longText('description')->nullable();
         $table->boolean('paid_status')->nullable()->default(false);
         $table->boolean('is_canceled')->nullable()->default(false);
         $table->string('token')->nullable();
         $table->longText('params')->nullable();
-        $table->foreignId('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
-        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->unsignedBigInteger('gateway_id')->nullable();
+        $table->unsignedBigInteger('partner_id')->nullable();
+    }
 
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('currency_id')->nullable()->constrained(table: 'currency_currency')->onDelete('set null');
+        $table->foreign('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
+        $table->foreign('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
     }
 }
