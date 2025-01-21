@@ -68,8 +68,8 @@ class Withdraw extends BaseModel
 
     public function post_migration(Blueprint $table): void
     {
-        $table->foreign('currency_id')->nullable()->constrained(table: 'currency_currency')->onDelete('set null');
-        $table->foreign('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
-        $table->foreign('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->foreign('currency_id')->references('id')->on(table: 'core_currency')->onDelete('set null');
+        $table->foreign('gateway_id')->references('id')->on(table: 'account_gateway')->onDelete('set null');
+        $table->foreign('partner_id')->references('id')->on(table: 'partner_partner')->onDelete('set null');
     }
 }

@@ -43,6 +43,6 @@ class Blacklist extends BaseModel
 
     public function post_migration(Blueprint $table): void
     {
-        $table->foreign('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->foreign('partner_id')->references('id')->on(table: 'partner_partner')->onDelete('set null');
     }
 }
