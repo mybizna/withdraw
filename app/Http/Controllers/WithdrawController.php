@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Withdraw\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect; // Replace with your WithdrawProcessor class
@@ -11,8 +11,9 @@ use Modules\Withdraw\Classes\WithdrawProcessor; // Replace with your Setting mod
 use Modules\Withdraw\Models\Gateway;
 use Modules\Withdraw\Models\Setting;
 use Modules\Withdraw\Models\Withdraw;
+use Modules\Base\Http\Controllers\BaseController;
 
-class WithdrawController extends Controller
+class WithdrawController extends BaseController
 {
     public function index()
     {
